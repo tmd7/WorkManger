@@ -5,7 +5,7 @@ public class Presenter implements Contract.Presenter {
   private Contract.View view;
   private Contract.Model model;
 
-  public Presenter(Contract.View view) {
+  Presenter(Contract.View view) {
     this.view = view;
     model = new Model();
   }
@@ -16,6 +16,8 @@ public class Presenter implements Contract.Presenter {
     if (person.getName().equals("") || person.getSurname().equals("") || person.getAge().equals("")) {
       view.showSnackBar(R.string.empty_values);
     } else {
+
+      //if data is OK, transfers to model
       model.getDataFromPresenter(person);
     }
   }
