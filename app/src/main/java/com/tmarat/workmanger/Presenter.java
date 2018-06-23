@@ -14,6 +14,8 @@ public class Presenter implements Contract.Presenter {
     Person person = view.getUserInput();
     if (person.getName().equals("") || person.getSurname().equals("") || person.getAge().equals("")) {
       view.showSnackBar(R.string.empty_values);
+    } else {
+      model.getDataFromPresenter(person);
     }
   }
 }

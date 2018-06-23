@@ -4,7 +4,6 @@ public interface Contract {
 
   interface View {
     Person getUserInput();
-
     void showSnackBar(int resId);
   }
 
@@ -13,6 +12,6 @@ public interface Contract {
   }
 
   interface Model {
-
+    void getDataFromPresenter(Person person);
   }
 }
