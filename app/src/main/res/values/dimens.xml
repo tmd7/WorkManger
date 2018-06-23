@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="padding_large">16dp</dimen>
+  <dimen name="margin_large">16dp</dimen>
+  <dimen name="font_size_med">20sp</dimen>
+  <dimen name="edit_t_name_w">80dp</dimen>
+  <dimen name="edit_t_surname_w">120dp</dimen>
+</resources>

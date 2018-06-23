@@ -1,0 +1,7 @@
+<resources>
+  <string name="app_name">WorkManger</string>
+  <string name="hint_name">Name</string>
+  <string name="hint_surname">Surname</string>
+  <string name="hint_age">Age</string>
+  <string name="text_bt_save">save</string>
+</resources>
