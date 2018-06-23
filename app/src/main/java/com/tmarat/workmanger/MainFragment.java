@@ -32,12 +32,16 @@ public class MainFragment extends Fragment implements Contract.View {
       @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_main, container, false);
     setUI(view);
+    setOnClickListener(view);
+    return view;
+  }
+
+  private void setOnClickListener(View view) {
     view.findViewById(R.id.save_bt).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         presenter.checkData();
       }
     });
-    return view;
   }
 
   private void setUI(View view) {
