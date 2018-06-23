@@ -26,11 +26,17 @@ public class MainFragment extends Fragment implements Contract.View {
     person = new Person();
   }
 
-  @Nullable @Override
+  @Nullable
+  @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_main, container, false);
     setUI(view);
+    view.findViewById(R.id.save_bt).setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        presenter.checkData();
+      }
+    });
     return view;
   }
 
@@ -41,14 +47,16 @@ public class MainFragment extends Fragment implements Contract.View {
     recyclerView = view.findViewById(R.id.recycler_view_person_list);
   }
 
-  @Override public Person getUserInput() {
+  @Override
+  public Person getUserInput() {
     person.setName(editTextName.getText().toString());
     person.setSurname(editTextSurname.getText().toString());
     person.setAge(editTextAge.getText().toString());
     return person;
   }
 
-  @Override public void showSnackBar(int resId) {
+  @Override
+  public void showSnackBar(int resId) {
     //SnackBar
   }
 }

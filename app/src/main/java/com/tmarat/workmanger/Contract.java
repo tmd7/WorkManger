@@ -8,7 +8,7 @@ public interface Contract {
   }
 
   interface Presenter {
-
+    void checkData();
   }
 
   interface Model {
