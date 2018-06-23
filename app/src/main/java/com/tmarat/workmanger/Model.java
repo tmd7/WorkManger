@@ -1,4 +1,4 @@
 package com.tmarat.workmanger;
 
-public class Model {
+public class Model implements Contract.Model{
 }

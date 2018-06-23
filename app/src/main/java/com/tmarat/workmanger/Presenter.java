@@ -1,4 +1,4 @@
 package com.tmarat.workmanger;
 
-public class Presenter {
+public class Presenter implements Contract.Presenter {
 }
