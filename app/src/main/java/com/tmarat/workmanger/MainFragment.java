@@ -17,8 +17,13 @@ public class MainFragment extends Fragment implements Contract.View {
   private EditText editTextAge;
   private RecyclerView recyclerView;
 
+  private Contract.Presenter presenter;
+  Person person;
+
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    presenter = new Presenter(this);
+    person = new Person();
   }
 
   @Nullable @Override
@@ -37,7 +42,6 @@ public class MainFragment extends Fragment implements Contract.View {
   }
 
   @Override public Person getUserInput() {
-    Person person = new Person();
     person.setName(editTextName.getText().toString());
     person.setSurname(editTextSurname.getText().toString());
     person.setAge(editTextAge.getText().toString());
