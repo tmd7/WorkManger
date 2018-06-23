@@ -36,10 +36,15 @@ public class MainFragment extends Fragment implements Contract.View {
     recyclerView = view.findViewById(R.id.recycler_view_person_list);
   }
 
-  @Override public void getUserInput() {
+  @Override public Person getUserInput() {
     Person person = new Person();
     person.setName(editTextName.getText().toString());
     person.setSurname(editTextSurname.getText().toString());
     person.setAge(editTextAge.getText().toString());
+    return person;
+  }
+
+  @Override public void showSnackBar(int resId) {
+    //SnackBar
   }
 }
