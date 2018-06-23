@@ -1,13 +1,15 @@
 package com.tmarat.workmanger;
 
+import android.content.Context;
+
 public class Presenter implements Contract.Presenter {
 
   private Contract.View view;
   private Contract.Model model;
 
-  Presenter(Contract.View view) {
+  Presenter(Contract.View view, Context applicationContext) {
     this.view = view;
-    model = new Model();
+    model = new Model(applicationContext);
   }
 
   @Override

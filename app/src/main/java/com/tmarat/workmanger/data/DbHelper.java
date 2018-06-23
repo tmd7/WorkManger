@@ -6,13 +6,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-  public DbHelper(Context context, String name,
-      SQLiteDatabase.CursorFactory factory, int version) {
-    super(context, name, factory, version);
+  private static final String BASE_NAME = "person.db";
+  private static final int BASE_VERSION = 1;
+
+  public DbHelper(Context context) {
+    super(context, BASE_NAME, null, BASE_VERSION);
   }
 
   @Override public void onCreate(SQLiteDatabase db) {
-
+    db.execSQL(SqlRequest.CREATE_TABLE_OF_PERSON);
   }
 
   @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

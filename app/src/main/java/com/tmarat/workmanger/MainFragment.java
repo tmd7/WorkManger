@@ -22,7 +22,7 @@ public class MainFragment extends Fragment implements Contract.View {
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    presenter = new Presenter(this);
+    presenter = new Presenter(this, getActivity().getApplicationContext());
     person = new Person();
   }
 
