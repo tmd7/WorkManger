@@ -9,9 +9,12 @@ import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkStatus;
+import com.tmarat.workmanger.common.Person;
+import com.tmarat.workmanger.contract.CallBack;
+import com.tmarat.workmanger.contract.MainContract;
 import com.tmarat.workmanger.worker.WriteDataIntoDbWorker;
 
-public class Model implements Contract.Model, LifecycleObserver {
+public class Model implements MainContract.Model, LifecycleObserver {
 
   private final String TAG = Model.class.getSimpleName();
 

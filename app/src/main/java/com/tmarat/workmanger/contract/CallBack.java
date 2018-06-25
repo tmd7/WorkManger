@@ -1,7 +1,7 @@
-package com.tmarat.workmanger;
+package com.tmarat.workmanger.contract;
 
 public interface CallBack {
-  interface dataBase{
+  interface dataBase {
     void onCompleteWriting();
   }
 }

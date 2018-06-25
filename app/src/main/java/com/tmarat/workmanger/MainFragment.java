@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.tmarat.workmanger.common.Person;
+import com.tmarat.workmanger.contract.MainContract;
 
-public class MainFragment extends Fragment implements Contract.View, LifecycleOwner {
+public class MainFragment extends Fragment implements MainContract.View, LifecycleOwner {
 
   private final String TAG = MainFragment.class.getSimpleName();
 
@@ -23,7 +25,7 @@ public class MainFragment extends Fragment implements Contract.View, LifecycleOw
   private EditText editTextAge;
   private RecyclerView recyclerView;
 
-  private Contract.Presenter presenter;
+  private MainContract.Presenter presenter;
   private Person person;
   private LifecycleOwner lifecycleOwner = new LifecycleOwner() {
     @NonNull @Override public Lifecycle getLifecycle() {
@@ -40,7 +42,8 @@ public class MainFragment extends Fragment implements Contract.View, LifecycleOw
   }
 
   @Nullable
-  @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     Log.d(TAG, "onCreateView()");
     View view = inflater.inflate(R.layout.fragment_main, container, false);

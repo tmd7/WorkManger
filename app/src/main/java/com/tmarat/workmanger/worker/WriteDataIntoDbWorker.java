@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import androidx.work.Worker;
-import com.tmarat.workmanger.Person;
+import com.tmarat.workmanger.common.Person;
 import com.tmarat.workmanger.data.DbHelper;
 import com.tmarat.workmanger.data.SqlRequest;
 

@@ -1,17 +1,19 @@
 package com.tmarat.workmanger;
 
 import android.arch.lifecycle.LifecycleOwner;
-import android.content.Context;
 import android.util.Log;
+import com.tmarat.workmanger.common.Person;
+import com.tmarat.workmanger.contract.CallBack;
+import com.tmarat.workmanger.contract.MainContract;
 
-public class Presenter implements Contract.Presenter {
+public class Presenter implements MainContract.Presenter {
 
   private final String TAG = Presenter.class.getSimpleName();
 
-  private Contract.View view;
-  private Contract.Model model;
+  private MainContract.View view;
+  private MainContract.Model model;
 
-  Presenter(Contract.View view, LifecycleOwner lifecycleOwner) {
+  Presenter(MainContract.View view, LifecycleOwner lifecycleOwner) {
     Log.d(TAG, "Presenter()");
     this.view = view;
     model = new Model(lifecycleOwner);

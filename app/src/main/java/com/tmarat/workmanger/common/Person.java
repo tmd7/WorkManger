@@ -1,4 +1,4 @@
-package com.tmarat.workmanger;
+package com.tmarat.workmanger.common;
 
 public class Person {
   private String name;
