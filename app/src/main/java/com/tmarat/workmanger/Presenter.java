@@ -11,8 +11,7 @@ public class Presenter implements Contract.Presenter {
   private Contract.View view;
   private Contract.Model model;
 
-  Presenter(Contract.View view, Context applicationContext,
-      LifecycleOwner lifecycleOwner) {
+  Presenter(Contract.View view, LifecycleOwner lifecycleOwner) {
     Log.d(TAG, "Presenter()");
     this.view = view;
     model = new Model(lifecycleOwner);
@@ -26,7 +25,12 @@ public class Presenter implements Contract.Presenter {
       view.showToast(R.string.empty_values);
     } else {
       //if data is OK, passes to model
-      model.getDataFromPresenter(person);
+      model.getDataFromPresenter(person, new CallBack.dataBase() {
+        @Override public void onCompleteWriting() {
+          view.showToast(R.string.done);
+        }
+      });
+
       view.clearEditText();
     }
   }

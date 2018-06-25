@@ -13,6 +13,6 @@ public interface Contract {
   }
 
   interface Model {
-    void getDataFromPresenter(Person person);
+    void getDataFromPresenter(Person person, CallBack.dataBase dataBase);
   }
 }

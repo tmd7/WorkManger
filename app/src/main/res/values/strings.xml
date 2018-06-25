@@ -5,4 +5,5 @@
   <string name="hint_age">Age</string>
   <string name="text_bt_save">save</string>
   <string name="empty_values">Empty value</string>
+  <string name="done">Done</string>
 </resources>

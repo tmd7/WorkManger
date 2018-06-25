@@ -35,7 +35,7 @@ public class MainFragment extends Fragment implements Contract.View, LifecycleOw
   public void onCreate(@Nullable Bundle savedInstanceState) {
     Log.d(TAG, "onCreate()");
     super.onCreate(savedInstanceState);
-    presenter = new Presenter(this, getActivity().getApplicationContext(), lifecycleOwner);
+    presenter = new Presenter(this, lifecycleOwner);
     person = new Person();
   }
 

@@ -3,14 +3,12 @@ package com.tmarat.workmanger;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
-import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkStatus;
-import com.tmarat.workmanger.data.DbHelper;
 import com.tmarat.workmanger.worker.WriteDataIntoDbWorker;
 
 public class Model implements Contract.Model, LifecycleObserver {
@@ -26,10 +24,10 @@ public class Model implements Contract.Model, LifecycleObserver {
   }
 
   @Override
-  public void getDataFromPresenter(Person person) {
+  public void getDataFromPresenter(Person person, CallBack.dataBase callBack) {
     Log.d(TAG, "getDataFromPresenter()");
     doWorkRequest(person);
-    checkWorkerStatus();
+    checkWorkerStatus(callBack);
   }
 
   private void doWorkRequest(Person person) {
@@ -47,14 +45,14 @@ public class Model implements Contract.Model, LifecycleObserver {
     WorkManager.getInstance().enqueue(writeData);
   }
 
-  private void checkWorkerStatus() {
-    WorkManager.getInstance()
-        .getStatusById(writeData.getId())
+  private void checkWorkerStatus(final CallBack.dataBase callBack) {
+    WorkManager.getInstance().getStatusById(writeData.getId())
         .observe(lifecycleOwner, new Observer<WorkStatus>() {
           @Override public void onChanged(@Nullable WorkStatus workStatus) {
             Log.d(TAG, "onChange: " + workStatus.getState());
             if (workStatus.getState().isFinished()) {
               Log.d(TAG, "Finished");
+              callBack.onCompleteWriting();
             }
           }
         });
