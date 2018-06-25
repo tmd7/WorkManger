@@ -17,7 +17,6 @@ public class Model implements Contract.Model, LifecycleObserver {
 
   private final String TAG = Model.class.getSimpleName();
 
-  private Person person;
   private OneTimeWorkRequest writeData;
   private LifecycleOwner lifecycleOwner;
 
@@ -26,18 +25,14 @@ public class Model implements Contract.Model, LifecycleObserver {
     this.lifecycleOwner = lifecycleOwner;
   }
 
-  Model() {
-  }
-
   @Override
   public void getDataFromPresenter(Person person) {
     Log.d(TAG, "getDataFromPresenter()");
-    this.person = person;
-    doWorkRequest();
-    //checkWorkerStatus();
+    doWorkRequest(person);
+    checkWorkerStatus();
   }
 
-  private void doWorkRequest() {
+  private void doWorkRequest(Person person) {
     Data data = new Data.Builder()
         .putString("name", person.getName())
         .putString("surname", person.getSurname())

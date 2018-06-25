@@ -40,8 +40,7 @@ public class MainFragment extends Fragment implements Contract.View, LifecycleOw
   }
 
   @Nullable
-  @Override
-  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+  @Override public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     Log.d(TAG, "onCreateView()");
     View view = inflater.inflate(R.layout.fragment_main, container, false);
@@ -56,7 +55,6 @@ public class MainFragment extends Fragment implements Contract.View, LifecycleOw
       @Override public void onClick(View v) {
         Log.d(TAG, "onClick()");
         presenter.checkData(getUserInput());
-        clearEditText();
       }
     });
   }
@@ -77,15 +75,14 @@ public class MainFragment extends Fragment implements Contract.View, LifecycleOw
     return person;
   }
 
-  private void clearEditText() {
+  @Override public void clearEditText() {
     Log.d(TAG, "clearEditText()");
     editTextName.setText("");
     editTextSurname.setText("");
     editTextAge.setText("");
   }
 
-  @Override
-  public void showToast(int resId) {
+  @Override public void showToast(int resId) {
     Log.d(TAG, "showToast()");
     Toast.makeText(getContext(), resId, Toast.LENGTH_SHORT).show();
   }

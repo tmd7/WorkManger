@@ -3,6 +3,8 @@ package com.tmarat.workmanger;
 public interface Contract {
 
   interface View {
+    void clearEditText();
+
     void showToast(int resId);
   }
 

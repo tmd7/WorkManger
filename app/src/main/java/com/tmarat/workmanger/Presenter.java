@@ -18,15 +18,16 @@ public class Presenter implements Contract.Presenter {
     model = new Model(lifecycleOwner);
   }
 
-  @Override
-  public void checkData(Person person) {
+  @Override public void checkData(Person person) {
     Log.d(TAG, "checkData()");
+
     if (person.getName().equals("") || person.getSurname().equals("")
         || person.getAge().equals("")) {
       view.showToast(R.string.empty_values);
     } else {
       //if data is OK, passes to model
       model.getDataFromPresenter(person);
+      view.clearEditText();
     }
   }
 }
