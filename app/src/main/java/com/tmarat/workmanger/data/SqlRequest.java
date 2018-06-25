@@ -2,13 +2,13 @@ package com.tmarat.workmanger.data;
 
 public class SqlRequest {
 
-  private static final String PERSON_TABLE_NAME = "person";
+  public static final String PERSON_TABLE_NAME = "person";
 
   public static class COLUMN {
-    static final String ID = "_id";
-    static final String NAME = "name";
-    static final String SURNAME = "surname";
-    static final String AGE = "age";
+    private static final String ID = "_id";
+    public static final String NAME = "name";
+    public static final String SURNAME = "surname";
+    public static final String AGE = "age";
   }
 
   public static final String CREATE_TABLE_OF_PERSON =

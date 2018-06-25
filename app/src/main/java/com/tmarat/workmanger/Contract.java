@@ -3,12 +3,11 @@ package com.tmarat.workmanger;
 public interface Contract {
 
   interface View {
-    Person getUserInput();
-    void showSnackBar(int resId);
+    void showToast(int resId);
   }
 
   interface Presenter {
-    void checkData();
+    void checkData(Person person);
   }
 
   interface Model {
