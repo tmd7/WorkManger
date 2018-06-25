@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 public class MainFragment extends Fragment implements Contract.View, LifecycleOwner {
 
-  private static final String TAG = MainFragment.class.getSimpleName();
+  private final String TAG = MainFragment.class.getSimpleName();
 
   private EditText editTextName;
   private EditText editTextSurname;

@@ -6,7 +6,7 @@ import android.util.Log;
 
 public class Presenter implements Contract.Presenter {
 
-  private static final String TAG = Presenter.class.getSimpleName();
+  private final String TAG = Presenter.class.getSimpleName();
 
   private Contract.View view;
   private Contract.Model model;
