@@ -15,7 +15,7 @@ public class Presenter implements Contract.Presenter {
       LifecycleOwner lifecycleOwner) {
     Log.d(TAG, "Presenter()");
     this.view = view;
-    model = new Model(applicationContext, lifecycleOwner);
+    model = new Model(lifecycleOwner);
   }
 
   @Override

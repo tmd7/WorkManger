@@ -3,30 +3,26 @@ package com.tmarat.workmanger;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
-import android.content.ContentValues;
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import androidx.work.WorkStatus;
-import androidx.work.Worker;
 import com.tmarat.workmanger.data.DbHelper;
-import com.tmarat.workmanger.data.SqlRequest;
+import com.tmarat.workmanger.worker.WriteDataIntoDbWorker;
 
-public class Model extends Worker implements Contract.Model, LifecycleObserver {
+public class Model implements Contract.Model, LifecycleObserver {
 
   private final String TAG = Model.class.getSimpleName();
 
   private Person person;
-  private DbHelper dbHelper;
-  private OneTimeWorkRequest workRequest;
+  private OneTimeWorkRequest writeData;
   private LifecycleOwner lifecycleOwner;
 
-  Model(Context applicationContext, LifecycleOwner lifecycleOwner) {
+  Model(LifecycleOwner lifecycleOwner) {
     Log.d(TAG, "Model()");
-    dbHelper = new DbHelper(applicationContext);
     this.lifecycleOwner = lifecycleOwner;
   }
 
@@ -42,13 +38,23 @@ public class Model extends Worker implements Contract.Model, LifecycleObserver {
   }
 
   private void doWorkRequest() {
-    workRequest = new OneTimeWorkRequest.Builder(Model.class).build();
-    WorkManager.getInstance().enqueue(workRequest);
+    Data data = new Data.Builder()
+        .putString("name", person.getName())
+        .putString("surname", person.getSurname())
+        .putString("age", person.getAge())
+        .build();
+
+    writeData = new OneTimeWorkRequest
+        .Builder(WriteDataIntoDbWorker.class)
+        .setInputData(data)
+        .build();
+
+    WorkManager.getInstance().enqueue(writeData);
   }
 
   private void checkWorkerStatus() {
     WorkManager.getInstance()
-        .getStatusById(workRequest.getId())
+        .getStatusById(writeData.getId())
         .observe(lifecycleOwner, new Observer<WorkStatus>() {
           @Override public void onChanged(@Nullable WorkStatus workStatus) {
             Log.d(TAG, "onChange: " + workStatus.getState());
@@ -57,16 +63,5 @@ public class Model extends Worker implements Contract.Model, LifecycleObserver {
             }
           }
         });
-  }
-
-  @NonNull @Override public Result doWork() {
-    Log.d(TAG, "doWork: Start");
-    ContentValues cv = new ContentValues();
-    cv.put(SqlRequest.COLUMN.NAME, person.getName());
-    cv.put(SqlRequest.COLUMN.SURNAME, person.getSurname());
-    cv.put(SqlRequest.COLUMN.AGE, person.getAge());
-    dbHelper.getWritableDatabase().insert(SqlRequest.PERSON_TABLE_NAME, null, cv);
-    Log.d(TAG, "doWork: End");
-    return Result.SUCCESS;
   }
 }
