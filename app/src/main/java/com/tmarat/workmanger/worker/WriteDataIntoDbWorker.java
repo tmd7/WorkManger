@@ -10,6 +10,9 @@ import com.tmarat.workmanger.data.SqlRequest;
 
 public class WriteDataIntoDbWorker extends Worker {
 
+  private static final String NAME = "name";
+  private static final String SURNAME = "surname";
+  private static final String AGE = "age";
   private final String TAG = WriteDataIntoDbWorker.class.getSimpleName();
 
   private Person person;
@@ -23,9 +26,9 @@ public class WriteDataIntoDbWorker extends Worker {
   private void getData() {
     Log.d(TAG, "getData()");
     person = new Person();
-    person.setName(getInputData().getString("name", ""));
-    person.setSurname(getInputData().getString("surname", ""));
-    person.setAge(getInputData().getString("age", ""));
+    person.setName(getInputData().getString(NAME, ""));
+    person.setSurname(getInputData().getString(SURNAME, ""));
+    person.setAge(getInputData().getString(AGE, ""));
   }
 
   private void writeWork() {
